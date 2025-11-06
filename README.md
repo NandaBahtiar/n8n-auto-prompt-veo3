@@ -43,15 +43,4 @@ The complete workflow configuration can be found here:
 2. Configure your API credentials
 3. Adjust the workflow parameters as needed
 4. Activate the workflow
-
-## Usage
-
-Once configured, the workflow will automatically process prompts and generate videos using the Veo3 model based on your specified triggers and conditions.
-
-## Support
-
-For issues, questions, or contributions, please refer to the main repository.
-
-## License
-
-Please refer to the repository for license information.
+ 
