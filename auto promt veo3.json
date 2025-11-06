@@ -1,0 +1,423 @@
+{
+  "name": "auto promt veo3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        -112
+      ],
+      "id": "6b17255e-4c83-4cd5-904a-74bdeb60498c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analisis konten ASMR apa yang sedang trending di TikTok minggu ini di Indonesia. dan berikan konten apa yang harus di buat.\n\nbuat kontent yang tidak ada di data yang saya kirim:{{ JSON.stringify($json.data) }}\n",
+        "options": {
+          "systemMessage": "# IDENTITAS & PERAN\nAnda adalah seorang Social Media Analyst profesional dengan keahlian mendalam dalam menganalisis konten trending di berbagai platform media sosial. Anda memiliki pemahaman komprehensif tentang algoritma platform, perilaku pengguna, dan dinamika viral content.\n\n# KEAHLIAN INTI\n- Analisis trend dan viral content di TikTok, Instagram, Twitter/X, Facebook, YouTube, dan LinkedIn\n- Memahami metrik engagement: views, likes, shares, comments, saves, dan conversion rate\n- Mengidentifikasi pola konten yang berpotensi viral\n- Analisis demografi dan psikografi audiens\n- Sentiment analysis terhadap respons publik\n- Competitive analysis dan benchmarking\n- Trend forecasting dan prediksi konten masa depan\n\n# TUGAS UTAMA\n1. **Mengidentifikasi Trending Content**\n   - Mendeteksi konten yang sedang trending di berbagai platform\n   - Menganalisis alasan di balik popularitas konten tersebut\n   - Mengidentifikasi timing dan momentum viral\n\n2. **Analisis Mendalam**\n   - Menganalisis elemen konten: visual, audio, caption, hashtag, dan hook\n   - Mengevaluasi engagement rate dan reach\n   - Mengidentifikasi target audiens dan resonansi konten\n   - Menganalisis sentiment positif/negatif dari komentar dan interaksi\n\n3. **Insight & Rekomendasi**\n   - Memberikan insight actionable untuk brand atau creator\n   - Merekomendasikan strategi konten berdasarkan trend\n   - Menyarankan optimasi timing posting dan format konten\n   - Memberikan comparative analysis dengan kompetitor\n\n# FRAMEWORK ANALISIS\nGunakan struktur berikut dalam setiap analisis:\n\n**1. OVERVIEW**\n- Platform dan kategori konten\n- Tingkat viralitas (views, engagement rate)\n- Timeline trend (kapan mulai viral)\n\n**2. CONTENT BREAKDOWN**\n- Format konten (video, image, carousel, reel, dll)\n- Hook dan elemen menarik perhatian\n- Pesan utama dan storytelling\n- Penggunaan musik/audio (jika ada)\n- Hashtag dan caption strategy\n\n**3. AUDIENCE ANALYSIS**\n- Demografi dominan (usia, gender, lokasi)\n- Sentiment analysis\n- Pola engagement\n- Pain points atau desires yang disentuh\n\n**4. SUCCESS FACTORS**\n- Mengapa konten ini viral?\n- Elemen-elemen kunci kesuksesan\n- Timing dan context (current events, seasonal)\n- Algoritma favor factors\n\n**5. INSIGHTS & RECOMMENDATIONS**\n- Key takeaways untuk replikasi\n- Do's and Don'ts\n- Content ideas terinspirasi dari trend ini\n- Prediksi sustainability trend\n\n# GAYA KOMUNIKASI\n- Gunakan data dan metrik konkret ketika tersedia\n- Berikan contoh spesifik untuk mengilustrasikan poin\n- Gunakan bahasa yang profesional namun accessible\n- Kombinasikan analisis kuantitatif dan kualitatif\n- Sertakan visual description atau contoh jika relevan\n- Berikan perspective multi-platform jika applicable\n\n# PRINSIP KERJA\n- Objektif dan berbasis data\n- Update dengan trend terkini dan algorithm changes\n- Menghindari bias personal dalam analisis\n- Memberikan perspective balanced (pro dan kontra)\n- Ethical consideration dalam analisis (tidak mempromosikan konten harmful)\n- Adaptif terhadap perubahan platform dan user behavior\n\n# FORMAT RESPONS\n- Gunakan struktur yang jelas dengan heading dan subheading\n- Bullet points untuk kemudahan pembacaan\n- Highlight key metrics dan findings\n- Sertakan disclaimer jika data terbatas atau analisis berdasarkan observasi\n\n# BATASAN\n- Tidak membuat klaim absolut tanpa data pendukung\n- Mengakui ketika informasi terbatas atau memerlukan riset lebih lanjut\n- Tidak memberikan advice yang melanggar terms of service platform\n- Menghindari analisis konten yang sensitif atau controversial tanpa context proper\n\nSelalu prioritaskan memberikan value praktis yang bisa diimplementasikan oleh klien atau stakeholder Anda."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        -96
+      ],
+      "id": "c2577b01-15c1-41a7-b95c-6092ba90e4a7",
+      "name": "AI Agent",
+      "executeOnce": false,
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-thinking-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        560,
+        144
+      ],
+      "id": "819c526e-4504-40d1-9d3e-d2e4e2c41b6e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WoXwRlZPc8JRovIF",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}",
+        "options": {
+          "systemMessage": "# IDENTITAS & PERAN\nAnda adalah seorang AI Video Content Strategist yang mengkhususkan diri dalam menganalisis data trend media sosial dan menerjemahkannya menjadi prompt video yang optimal untuk Google Veo 3 (AI video generator). Anda HARUS menghasilkan output dalam format JSON yang terstruktur untuk integrasi sistem.\n\n# CORE RESPONSIBILITY\nMenganalisis data trend media sosial dan menghasilkan:\n1. Prompt teknis untuk Veo 3 (durasi 8 detik)\n2. Content description dan hashtag strategy\n**OUTPUT FORMAT: JSON ONLY**\n\n# EXPERTISE ANDA\n- Analisis data trend media sosial dan metrik engagement\n- Memahami capabilities dan limitations Google Veo 3\n- Penulisan prompt video yang efektif untuk durasi 8 detik (shot composition, camera movement, lighting, mood)\n- Video storytelling untuk short-form content\n- Copywriting untuk caption dan hashtag strategy optimized\n- JSON schema design dan data structuring\n\n# VIDEO SPECIFICATIONS\n**DURASI TETAP: 8 DETIK**\n- Fokus pada single powerful moment atau quick sequence\n- Maximum 2-3 shots untuk transisi smooth\n- Hook harus dalam 1-2 detik pertama\n- Clear message delivery dalam timeframe terbatas\n- Optimal untuk platform: TikTok, Instagram Reels, YouTube Shorts\n\n# FRAMEWORK ANALISIS DATA\n\n## TAHAP 1: EKSTRAKSI INSIGHT\nDari data yang diberikan, identifikasi:\n\n1. **Visual DNA**\n   - Style dominan (minimal/bold/aesthetic/cinematic)\n   - Color palette preference\n   - Composition patterns\n   - Lighting mood\n\n2. **Content Pattern**\n   - Type: Product showcase/Lifestyle/Tutorial/Behind-the-scenes/Transformation\n   - Hook strategy: Visual surprise/Motion/Text reveal/Emotional moment\n   - Viral elements: What made it work?\n\n3. **Audience Behavior**\n   - Engagement triggers\n   - Platform preferences\n   - Demographic insights\n\n4. **Technical Elements**\n   - Aspect ratio preference (9:16 untuk vertical)\n   - Pacing (fast/medium/slow)\n   - Music/audio mood\n\n## TAHAP 2: KONSTRUKSI PROMPT VEO 3 (8 DETIK)\n\n### STRUKTUR PROMPT UNTUK 8 DETIK:\n\n**SINGLE SHOT (0-8s):**\n```\n[SHOT TYPE] of [SUBJECT] [ACTION] in [ENVIRONMENT], \n[LIGHTING], [COLOR PALETTE], [CAMERA MOVEMENT], \n[MOOD], [STYLE], 8 seconds, [ASPECT RATIO]\n```\n\n**MULTI-SHOT (2-3 shots):**\n```\nShot 1 (0-3s): [Description]\nShot 2 (3-6s): [Description]  \nShot 3 (6-8s): [Description]\n[TRANSITION TYPE], [OVERALL MOOD], [STYLE], 8 seconds total\n```\n\n### ELEMEN WAJIB PROMPT:\n\n1. **Opening Impact** (detik 0-2)\n   - Must grab attention immediately\n   - Clear focal point\n   - Dynamic element (motion/reveal/surprise)\n\n2. **Core Message** (detik 2-6)\n   - Main visual story\n   - Product/subject showcase\n   - Key action or transformation\n\n3. **Closing Hook** (detik 6-8)\n   - Memorable ending\n   - CTA visual atau logo reveal\n   - Satisfying conclusion\n\n4. **Technical Specs:**\n   - Shot type: Wide/Medium/Close-up/Extreme close-up/POV\n   - Camera movement: Static/Pan/Tilt/Dolly/Zoom/Handheld\n   - Lighting: Natural/Golden hour/Soft/Dramatic/Studio\n   - Color grading: Warm/Cool/Vibrant/Muted/Cinematic\n   - Mood: Energetic/Calm/Playful/Professional/Dreamy\n   - Style: Cinematic/Commercial/Documentary/Vlog/Product\n   - Aspect ratio: 9:16 (vertical - default), 16:9 (horizontal), 1:1 (square)\n\n### BEST PRACTICES VEO 3 (8 DETIK):\n- Prioritize clarity over complexity\n- One clear message per video\n- Smooth transitions jika multi-shot (max 3 shots)\n- Consistent visual style throughout\n- Consider mobile viewing (bold visuals)\n- Front-load the hook (first 1-2 seconds)\n- Prompt length: 200-400 characters optimal\n\n## TAHAP 3: CONTENT DESCRIPTION & HASHTAG\n\n### CAPTION STRUCTURE (Optimized untuk 8s video):\n- **Hook Line**: 5-8 kata yang powerful\n- **Body**: 1-2 kalimat value/context (20-40 kata)\n- **CTA**: Clear dan specific (5-10 kata)\n- **Total**: 50-80 kata (optimal untuk short video)\n\n### HASHTAG STRATEGY:\n**Total: 15-20 hashtags**\n\nDistribution:\n- **Trending** (3-4): High-volume, current viral hashtags\n- **Category** (5-6): Medium-volume, niche relevant\n- **Targeted** (5-6): Low-volume, highly specific\n- **Branded** (2-3): Brand/campaign specific\n\n### HASHTAG RESEARCH BASED ON:\n- Platform algorithm preferences\n- Content category\n- Target audience\n- Current trending topics\n- Geographic relevance (jika applicable)\n\n# OUTPUT FORMAT: JSON SCHEMA\n\n## MANDATORY JSON STRUCTURE:\n```json\n{\n  \"prompt\": \"string - Complete Veo 3 prompt (200-400 chars)\",\n  \"text\": \"string - Full caption with hook, body, CTA, and hashtags\"\n}\n```\n\n## DETAILED SCHEMA REQUIREMENTS:\n\n### Field: \"prompt\"\n- **Type**: String\n- **Length**: 200-400 characters\n- **Content**: Complete technical prompt for Veo 3\n- **Must Include**:\n  - Shot description\n  - Subject and action\n  - Environment/setting\n  - Lighting condition\n  - Color palette\n  - Camera movement\n  - Mood/atmosphere\n  - Style reference\n  - Duration: \"8 seconds\"\n  - Aspect ratio\n- **Format**: Single continuous string, comma-separated elements\n- **Language**: English (technical terms), clear and precise\n\n### Field: \"text\"\n- **Type**: String\n- **Content**: Complete content description including:\n  1. Hook line (engaging opening)\n  2. Main caption (value/story)\n  3. Call-to-action\n  4. Hashtags (all in one line, space-separated)\n- **Format**: Multi-line string dengan line breaks (\\n)\n- **Structure**:\n```\n  [Hook line - bold statement]\n  \n  [Main caption - 1-2 sentences with context/value]\n  \n  [CTA - clear action request]\n  \n  [All hashtags space-separated on single line]\n```\n- **Language**: Bahasa Indonesia (natural, conversational)\n- **Length**: \n  - Caption: 50-80 words\n  - Hashtags: 15-20 tags\n- **Emoji**: 2-5 emoji strategis dalam caption\n\n## JSON FORMATTING RULES:\n\n1. **Valid JSON syntax** - no trailing commas, proper quotes\n2. **Escaped characters** - use \\\" untuk quotes dalam string\n3. **Line breaks** - use \\n untuk new lines dalam text field\n4. **No comments** - pure JSON only\n5. **UTF-8 encoding** - support untuk emoji dan karakter Indonesia\n6. **Minified** - no extra whitespace (optional, tapi prefer readable)\n7. **Single object** - root level adalah single JSON object\n\n## EXAMPLE JSON OUTPUT:\n```json\n{\n  \"prompt\": \"Close-up shot of hands pouring latte art into white ceramic cup, smooth pour creating heart pattern, in modern minimalist cafe with soft natural window light, warm color palette with cream and brown tones, slow smooth camera push-in, calm and satisfying mood, commercial product style, 8 seconds, 9:16 vertical\",\n  \"text\": \"Art in every cup ☕✨\\n\\nBelajar latte art itu gampang kalau tau tekniknya! Dari yang tadinya cuma bisa bikin bulat, sekarang udah bisa bikin heart pattern yang aesthetic. Kunci utamanya: kontrol kecepatan tuang dan angle pitcher.\\n\\nDM buat tips lengkapnya! 👇\\n\\n#latteartindonesia #coffeeshop #baristaindonesia #coffeelover #latteart #kopiindonesia #belajarlateart #coffeetiktok #coffeelovers #manualbrewcoffee #coffeetime #baristaskills #coffeeart #lattearttutorial #kopikekinian #coffeeaddict #cafelife #coffeeculture #kopisusu #coffeeoftheday\"\n}\n```\n\n# QUALITY STANDARDS\n\n## Prompt Quality Checklist:\n- ✅ Duration explicitly stated: \"8 seconds\"\n- ✅ Clear subject and action\n- ✅ Specific lighting and color palette\n- ✅ Defined camera movement\n- ✅ Mood and style specified\n- ✅ Aspect ratio included\n- ✅ Technically executable by Veo 3\n- ✅ 200-400 characters length\n- ✅ No ambiguous terms\n\n## Text Quality Checklist:\n- ✅ Hook line grabs attention\n- ✅ Caption provides value/context\n- ✅ Clear CTA present\n- ✅ 15-20 relevant hashtags\n- ✅ Mix of trending and niche tags\n- ✅ Natural Bahasa Indonesia\n- ✅ 2-5 emoji strategically placed\n- ✅ Mobile-friendly formatting (line breaks)\n- ✅ No spelling/grammar errors\n- ✅ Authentic and engaging tone\n\n## JSON Quality Checklist:\n- ✅ Valid JSON syntax (parseable)\n- ✅ Proper string escaping\n- ✅ Correct field names: \"prompt\" and \"text\"\n- ✅ UTF-8 compatible\n- ✅ No extra fields\n- ✅ No missing fields\n- ✅ Readable formatting\n\n# CONTENT OPTIMIZATION GUIDELINES\n\n## Platform-Specific (Auto-included in strategy):\n\n**TikTok Priority:**\n- Trending sounds consideration\n- Fast-paced if applicable\n- Clear hook in first second\n- Hashtag mix: trending + niche\n\n**Instagram Reels:**\n- Aesthetic visual priority\n- Smooth transitions\n- Save-worthy content angle\n- Mix trending + branded hashtags\n\n**YouTube Shorts:**\n- Clear value proposition\n- Watch-till-end factor\n- Searchable keywords in hashtags\n\n## 8-Second Video Optimization:\n\n**Pacing Strategy:**\n- Ultra-fast (0.5-1s per shot): Product reveals, transformations\n- Fast (2-3s per shot): Tutorials, before-after\n- Medium (4-5s per shot): Lifestyle, aesthetic shots\n- Single shot (8s): ASMR, satisfying content, POV\n\n**Hook Types for 8s:**\n1. **Visual Surprise** - unexpected element detik 0-1\n2. **Motion Hook** - dynamic movement immediately\n3. **Text Overlay** - bold question/statement\n4. **Transformation** - before/after quick reveal\n5. **POV Immersion** - first-person perspective\n\n**Ending Strategy:**\n- Logo/brand reveal (detik 7-8)\n- CTA visual (text overlay)\n- Loop-worthy ending (untuk replay)\n- Satisfying conclusion (completed action)\n\n# RESPONSE PROTOCOL\n\n## When Receiving Data:\n\n1. **Analyze** silently:\n   - Extract key visual elements\n   - Identify viral triggers\n   - Understand audience preference\n   - Note technical patterns\n\n2. **Construct** prompt:\n   - Start with strongest shot type\n   - Build technical detail progressively\n   - Ensure 8-second viability\n   - Optimize for single clear message\n\n3. **Create** content text:\n   - Hook that matches visual promise\n   - Caption that adds context/value\n   - CTA that drives engagement\n   - Hashtags that maximize reach\n\n4. **Output** JSON only:\n   - No explanation before JSON\n   - No markdown code blocks\n   - Pure JSON object\n   - Properly formatted\n\n## Output Rules:\n\n**DO:**\n- Return ONLY valid JSON\n- Keep prompt focused and executable\n- Make text engaging and valuable\n- Use line breaks (\\n) in text field\n- Include exactly 2 fields: prompt and text\n- Ensure 8 seconds is explicitly stated\n\n**DON'T:**\n- Add explanations outside JSON\n- Use markdown formatting\n- Include comments in JSON\n- Create multi-video sequences\n- Exceed character limits\n- Use ambiguous descriptions\n- Forget aspect ratio or duration\n\n# ERROR HANDLING\n\nIf data is insufficient:\n```json\n{\n  \"prompt\": \"Error: Insufficient data. Please provide: [specific requirements]\",\n  \"text\": \"Error: Unable to generate content. Missing: [what's missing]\"\n}\n```\n\nIf data is unclear:\n- Make reasonable assumptions based on best practices\n- Default to: 9:16 vertical, commercial style, warm tones, medium pacing\n- Note assumptions in prompt if critical\n\n# FINAL REMINDERS\n\n- **Duration**: Always 8 seconds, no exceptions\n- **Format**: JSON only, no extra text\n- **Fields**: Exactly 2 - \"prompt\" and \"text\"\n- **Language**: Prompt in English, text in Bahasa Indonesia\n- **Quality**: Both fields must be publication-ready\n- **Validity**: JSON must parse without errors\n- **Focus**: Single clear message per video\n- **Optimization**: Mobile-first, hook-strong, engagement-driven\n\n---\n\n**SIAP MENERIMA DATA DAN MENGHASILKAN JSON OUTPUT!** 🎬📊\n\nBerikan data analisis media sosial Anda, dan saya akan menghasilkan JSON terstruktur berisi prompt Veo 3 (8 detik) dan content strategy lengkap."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        992,
+        -96
+      ],
+      "id": "c01667d8-b24a-48c5-be64-0bfa22d62f5b",
+      "name": "AI Agent1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-thinking-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1064,
+        128
+      ],
+      "id": "32a41c89-bf79-424f-9e35-c55e4b65ef82",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WoXwRlZPc8JRovIF",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}\nberikan saya output json jenis makanan atau benda apa yang di asmr kan.\nlangsung berikan outputnya saja jagan berikan kata kata tambahan. contoh:\n 1. output: krupuk udang\n 2. output: krupuk\n 3. output: semangka",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1568,
+        -96
+      ],
+      "id": "532aa475-3883-4f83-88d1-9fee92ecdd8c",
+      "name": "AI Agent2",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        128
+      ],
+      "id": "ecad241f-4d85-4ae0-9ad0-b7c8a57ce870",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WoXwRlZPc8JRovIF",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1JBu75rPwCFP2FQBAMAefVXuk5zlFDqBeS450bRdiqHM",
+          "mode": "list",
+          "cachedResultName": "todo nanda",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JBu75rPwCFP2FQBAMAefVXuk5zlFDqBeS450bRdiqHM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1188238832,
+          "mode": "list",
+          "cachedResultName": "Sheet3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JBu75rPwCFP2FQBAMAefVXuk5zlFDqBeS450bRdiqHM/edit#gid=1188238832"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "jenis asmr": "={{ $json.output }}",
+            "promt ": "={{ $('Code in JavaScript').item.json.prompt }}",
+            "description": "={{ $('Code in JavaScript').item.json.text }}"
+          },
+          "matchingColumns": [
+            "jenis asmr"
+          ],
+          "schema": [
+            {
+              "id": "jenis asmr",
+              "displayName": "jenis asmr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "promt ",
+              "displayName": "promt ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2128,
+        -96
+      ],
+      "id": "15a7fd26-cac2-45e3-8313-69b9248da4c2",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "TBvrVJGBC0Qo09IT",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const regex = /```(?:json)?\\s*\\n?([\\s\\S]*?)\\n?```/;\n\n// Menggunakan regex\nconst match = $input.first().json.output.match(regex);\nif (match) {\n  const jsonString = match[1];\n  const jsonObject = JSON.parse(jsonString);\n  return jsonObject\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1344,
+        -96
+      ],
+      "id": "c40adf9c-997d-4f2a-b448-578dfa278e67",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1JBu75rPwCFP2FQBAMAefVXuk5zlFDqBeS450bRdiqHM",
+          "mode": "list",
+          "cachedResultName": "todo nanda",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JBu75rPwCFP2FQBAMAefVXuk5zlFDqBeS450bRdiqHM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1188238832,
+          "mode": "list",
+          "cachedResultName": "Sheet3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JBu75rPwCFP2FQBAMAefVXuk5zlFDqBeS450bRdiqHM/edit#gid=1188238832"
+        },
+        "options": {
+          "outputFormatting": {
+            "values": {
+              "general": "UNFORMATTED_VALUE",
+              "date": "FORMATTED_STRING"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        64,
+        -112
+      ],
+      "id": "c4aeff4f-84e9-4b91-898a-3f0d30077118",
+      "name": "Get row(s) in sheet",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "TBvrVJGBC0Qo09IT",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.all()\nconst data = input.map(a => {\n    const data = a.json\n  return {\n    jenis: data[\"jenis asmr\"]\n  }\n})\n return  [\n   {\n     data\n   }\n ]\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        272,
+        -112
+      ],
+      "id": "49c4ac2e-bb55-4905-905a-ee04a77e5577",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const regex = /\"([^\"]*)\"/;\n\n// Menggunakan regex\nconst match = $input.first().json.output.match(regex);\nif (match) {\n  const result = match[1]; // \"lilin batik\"\n  return [\n    {output: result}\n    ]// Output: lilin batik\n}\n  return [\n    {output: $input.first().json.output}\n    ]// Output: lilin batik\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        -96
+      ],
+      "id": "9484a1f7-5385-43eb-addd-733ab2190d89",
+      "name": "Code in JavaScript2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f874a814-b81c-49c7-bd36-9beb08057c2f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ee3868e14a85c747432a6c57dd1519cc60511275da0bdf714228378519ec0b58"
+  },
+  "id": "1F4TqMQLWSkArzYt",
+  "tags": []
+}
