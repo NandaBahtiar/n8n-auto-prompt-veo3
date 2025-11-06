@@ -1,45 +1,57 @@
-# Auto Prompt Veo3 — n8n Workflow
+# N8N Auto Prompt Veo3
 
-**Auto Prompt Veo3** adalah workflow otomatis berbasis **n8n** yang dirancang untuk menghasilkan prompt video AI untuk **Google Veo 3**, berdasarkan analisis tren konten **ASMR di TikTok Indonesia**.  
-Proyek ini mengintegrasikan **Google Sheets**, **Google Gemini (PaLM)**, dan **LangChain Agent** untuk membangun alur kerja analisis, generasi konten, dan penyimpanan data secara otomatis.
+## Overview
 
----
+This project provides an automated workflow for N8N that integrates with Google's Veo3 video generation model. The workflow enables automated prompt processing and video generation through a streamlined N8N integration.
 
-## Fitur Utama
+## Workflow Preview
 
-- **Otomatisasi penuh**
-  - Mengambil data jenis ASMR dari Google Sheets.
-  - Menganalisis tren konten menggunakan model Gemini.
-  - Menghasilkan prompt video Veo 3 berdurasi 8 detik dalam format JSON terstruktur.
-  - Menyimpan hasil akhir ke Google Sheets secara otomatis.
+![Workflow Screenshot](https://github.com/NandaBahtiar/n8n-auto-prompt-veo3/blob/main/Screenshot_6-11-2025_145058_cytopathogenic-degreeless-dahlia.ngrok-free.dev.jpeg)
 
-- **Integrasi AI Multi-Layer**
-  - Menggunakan **Google Gemini (PaLM)** untuk analisis dan generasi prompt.
-  - Memanfaatkan **LangChain Agent** untuk pemrosesan bertahap:
-    1. Analisis tren konten ASMR.
-    2. Pembuatan prompt video Veo 3.
-    3. Klasifikasi jenis objek ASMR.
+## Installation
 
-- **Integrasi Spreadsheet**
-  - Data input dan output disimpan di Google Sheets (`todo nanda / Sheet3`).
-  - Semua hasil disimpan dalam format tabel yang terstruktur.
+### Prerequisites
 
----
+- N8N installed and running
+- Access to Google Veo3 API
+- Required credentials configured
 
-## Diagram Alur
+### Import Workflow
 
-![Workflow Preview](https://github.com/NandaBahtiar/n8n-auto-prompt-veo3/blob/main/Screenshot_6-11-2025_145058_cytopathogenic-degreeless-dahlia.ngrok-free.dev.jpeg)
+1. Download the workflow JSON file from the source repository
+2. Open your N8N instance
+3. Navigate to Workflows
+4. Click on Import from File or Import from URL
+5. Select the downloaded JSON file or use the source URL
 
----
+## Source
 
-## Alur Kerja (Flow Summary)
+The complete workflow configuration can be found here:
 
-```mermaid
-graph TD
-  A[Manual Trigger] --> B[Get Row(s) from Google Sheets]
-  B --> C[Code Node - Format Data]
-  C --> D[AI Agent 1 - Social Media Analyst]
-  D --> E[AI Agent 2 - Veo 3 Prompt Generator]
-  E --> F[Code Node - Parse JSON]
-  F --> G[AI Agent 3 - ASMR Object Classifier]
-  G --> H[Append Result to Google Sheets]
+[Auto Prompt Veo3 Workflow JSON](https://github.com/NandaBahtiar/n8n-auto-prompt-veo3/blob/main/auto%20promt%20veo3.json)
+
+## Features
+
+- Automated prompt processing
+- Integration with Google Veo3
+- Configurable workflow nodes
+- Easy to customize and extend
+
+## Configuration
+
+1. Import the workflow using the source JSON file
+2. Configure your API credentials
+3. Adjust the workflow parameters as needed
+4. Activate the workflow
+
+## Usage
+
+Once configured, the workflow will automatically process prompts and generate videos using the Veo3 model based on your specified triggers and conditions.
+
+## Support
+
+For issues, questions, or contributions, please refer to the main repository.
+
+## License
+
+Please refer to the repository for license information.
